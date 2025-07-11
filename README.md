@@ -4,7 +4,6 @@
 
 DocForge is an AI-powered documentation platform that helps developers spend less time writing docs and more time building cool stuff. It auto-generates clean, readable documentation from your code, tracks changes across versions, and even integrates directly with GitHub — so you can focus on shipping, not explaining.
 
-Built by devs, for devs. ❤️
 
 ---
 
