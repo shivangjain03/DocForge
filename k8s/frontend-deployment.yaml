@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docforge-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: docforge-frontend
+  template:
+    metadata:
+      labels:
+        app: docforge-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: shivangjain/docforge-frontend:latest
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: docforge-frontend
+spec:
+  selector:
+    app: docforge-frontend
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: NodePort

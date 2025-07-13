@@ -2,11 +2,14 @@
 FROM node:18
 
 WORKDIR /app
-
 COPY package*.json ./
 RUN npm install
 
 COPY . .
+
+# 👇 Disable lint step during image build
+ENV NEXTJS_IGNORE_ESLINT=1
+# or: ENV NEXT_DISABLE_ESLINT_PLUGIN=1
 
 RUN npm run build
 

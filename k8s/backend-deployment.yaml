@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: docforge-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: docforge-backend
+  template:
+    metadata:
+      labels:
+        app: docforge-backend
+    spec:
+      containers:
+        - name: backend
+          image: shivangjain/docforge-backend:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DATABASE_URL
+              value: "postgresql://postgres:postgres@docforge-db:5432/docforge"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: docforge-backend
+spec:
+  selector:
+    app: docforge-backend
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
